@@ -1,12 +1,12 @@
 "use client";
 import Image from "next/image";
-import Picture from "./components/Picture";
+import Picture from "../components/Picture";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import NormalBoard from "./components/NormalBoard";
-import cat0 from "../const/cat0.png";
-import cat1 from "../const/cat1.png";
-import cat2 from "../const/cat2.png";
+import AnyPositionBoard from "../components/anyPositionBoard";
+import cat0 from "../../const/cat0.png";
+import cat1 from "../../const/cat1.png";
+import cat2 from "../../const/cat2.png";
 
 const PictureList = [
   {
@@ -33,7 +33,7 @@ export default function Home() {
             return <Picture url={picture.url.src} id={picture.id} />;
           })}
         </div>
-        <NormalBoard />
+        <AnyPositionBoard />
       </div>
     </DndProvider>
   );

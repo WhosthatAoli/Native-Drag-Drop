@@ -1,0 +1,19 @@
+.grid-container {
+  width: 720px;
+  height: 720px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1px solid #a64242;
+}
+
+.grid-cell {
+  width: 144px;
+  height: 144px;
+}
+
+.show-grid-cell {
+  /* Adjust the gap value as desired */
+  width: 144px;
+  height: 144px;
+  border: 1px solid whitesmoke;
+}
