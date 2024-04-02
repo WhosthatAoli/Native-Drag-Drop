@@ -1,53 +1,42 @@
 ## Drag and Drop implemented by native html+js functions and react-dnd hook.
 
 ### Why is it Native?
-Cause it just use react-dnd hook to mark the dom elements to be dragable or droppable. React-dnd is not provide functions to realize DND on anyposition or absorb position.
+This implementation leverages the react-dnd hook to designate DOM elements as draggable or droppable. However, react-dnd does not inherently facilitate drag-and-drop actions at arbitrary positions or enable automatic positioning (snapping) to a grid. Our approach extends this functionality, allowing for more versatile drag-and-drop interactions.
 
-So, let's take a look at it.
 
-### Try it on https://native-drag-and-drop.vercel.app
+### Explore the demo: https://native-drag-and-drop.vercel.app
 
-### List DnD
+### List Drag-and-Drop
 ![Screenshot 2024-04-02 at 3 42 51 PM](https://github.com/WhosthatAoli/Native-Drag-Drop/assets/54309838/e497371c-f292-49fb-aa25-28329fe24692)
 
-Pass id to drop board, and drop board map the pics.
+In this mode, you can drag items onto a droppable area, which then maps the items accordingly. This is achieved by passing an identifier to the drop target, which then associates the dragged items with their new positions.
 
-### Any Position DnD
+### Any-Position Drag-and-Drop
 ![Screenshot 2024-04-02 at 3 53 44 PM](https://github.com/WhosthatAoli/Native-Drag-Drop/assets/54309838/bb7ea30b-ceb5-4309-b83a-39ec1df55be6)
 
-What's under the hood?
+Behind the Scenes:
+To enable dropping items at any position, each item needs an absolute position within the drop area. The calculation for this position involves:
 
-Need to give pictures which mapped in the board a dynamic style: absolute position. How to caculate this position?
+1. Drag Offset: The cursor's position within the item being dragged, referred to as (dragOffsetX, dragOffsetY). This is calculated relative to the top-left corner of the item.
 
-All offset use the left top anchor of the element(frame) as reference.
+2. Board Offset: The cursor's position within the drop area, referred to as (boardOffsetX, boardOffsetY), obtained using the item's bounding rectangle.
 
-First, let's say the when you drag, you cursor in the picture frame with an offset, call it (dargOffsetX,dragOffsetY).
-
-In the code, use `e.dataTransfer.setData("MouseOffsetFromDragX", offsetX);` the html native method to pass data.
-
-Second, when you move your cursor to drop in the board, get the cursor offset of the board, is (boardOffsetX,boardOffsetY).
-
-`const targetRect = e.target.getBoundingClientRect();`
-
-So, the picture position(left top anchor) in the drop board should be (boardOffsetX,boardOffsetY) - (dargOffsetX,dragOffsetY).
+The final position of the item within the drop area is determined by subtracting the drag offset from the board offset, aligning the item based on the cursor's drop position.
 
 
-### Absorb to Grid Dnd
+### Grid-Based Drag-and-Drop
 ![Screenshot 2024-04-02 at 4 01 36 PM](https://github.com/WhosthatAoli/Native-Drag-Drop/assets/54309838/98a6636e-45b6-4d42-aafc-ce6af1e9b218)
 
-What's under the hood?
+Behind the Scenes:
 
-Use the same position caculation as Any position Dnd. 
+This mode builds on the any-position drag-and-drop by incorporating a grid layout. The item's final position snaps to the grid, calculated as follows:
 
-And add:
+**Grid Alignment**: 
+The drop position is divided by the grid size to determine the item's starting column and row within the grid.
 
-Board need to be grid layout. 
+Recommendations:
 
-Use position/(grid number) is the pic (start col, start row) in the grid board.
-
-Good to have:
-
-Grid size should be align with the picture size. Can smaller that picture size, but recommend to be Integer multiple. Like 30x30 size pic with 30x30 grid size.
+For optimal alignment, the grid size should match or be an integer multiple of the item's size. For example, a 30x30 pixel item should correspond to a grid size of 30x30 pixels.
 
 
 
