@@ -4,7 +4,7 @@
 Cause it just use react-dnd hook to mark the dom elements to be dragable or droppable. React-dnd is not provide functions to realize DND on anyposition or absorb position.
 So, let's take a look at it.
 
-### Try it on [https://native-drag-and-drop.vercel.app]
+### Try it on https://native-drag-and-drop.vercel.app
 
 
 
