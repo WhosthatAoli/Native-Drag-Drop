@@ -4,6 +4,7 @@ import Picture from "./Picture";
 import cat0 from "../../const/cat0.png";
 import cat1 from "../../const/cat1.png";
 import cat2 from "../../const/cat2.png";
+import { v4 as uuidv4 } from "uuid";
 
 const PictureList = [
   {
@@ -123,6 +124,7 @@ export default function AnyPositionBoard() {
             url={picture.url.src}
             id={picture.id}
             style={picture.style}
+            key={picture.id} // use picture.id instead of uuidv4() to avoid redundant re-rendering
           />
         );
       })}
