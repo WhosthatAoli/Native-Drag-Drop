@@ -2,6 +2,7 @@
 
 ### Why is it Native?
 Cause it just use react-dnd hook to mark the dom elements to be dragable or droppable. React-dnd is not provide functions to realize DND on anyposition or absorb position.
+
 So, let's take a look at it.
 
 ### Try it on https://native-drag-and-drop.vercel.app
@@ -15,22 +16,37 @@ Pass id to drop board, and drop board map the pics.
 ![Screenshot 2024-04-02 at 3 53 44 PM](https://github.com/WhosthatAoli/Native-Drag-Drop/assets/54309838/bb7ea30b-ceb5-4309-b83a-39ec1df55be6)
 
 What's under the hood?
+
 Need to give pictures which mapped in the board a dynamic style: absolute position. How to caculate this position?
+
 All offset use the left top anchor of the element(frame) as reference.
+
 First, let's say the when you drag, you cursor in the picture frame with an offset, call it (dargOffsetX,dragOffsetY).
-Second, when you move your cursor to drop in the board, get the cursor offset of the board, is (boardOffsetX,boardOffsetY)
+
+In the code, use `e.dataTransfer.setData("MouseOffsetFromDragX", offsetX);` the html native method to pass data.
+
+Second, when you move your cursor to drop in the board, get the cursor offset of the board, is (boardOffsetX,boardOffsetY).
+
+`const targetRect = e.target.getBoundingClientRect();`
+
 So, the picture position(left top anchor) in the drop board should be (boardOffsetX,boardOffsetY) - (dargOffsetX,dragOffsetY).
+
 
 ### Absorb to Grid Dnd
 ![Screenshot 2024-04-02 at 4 01 36 PM](https://github.com/WhosthatAoli/Native-Drag-Drop/assets/54309838/98a6636e-45b6-4d42-aafc-ce6af1e9b218)
 
 What's under the hood?
+
 Use the same position caculation as Any position Dnd. 
+
 And add:
+
 Board need to be grid layout. 
+
 Use position/(grid number) is the pic (start col, start row) in the grid board.
 
 Good to have:
+
 Grid size should be align with the picture size. Can smaller that picture size, but recommend to be Integer multiple. Like 30x30 size pic with 30x30 grid size.
 
 
