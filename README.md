@@ -6,12 +6,12 @@ This implementation leverages the react-dnd hook to designate DOM elements as dr
 
 ### Explore the demo: https://native-drag-and-drop.vercel.app
 
-### List Drag-and-Drop
+## List Drag-and-Drop
 ![Screenshot 2024-04-02 at 3 42 51 PM](https://github.com/WhosthatAoli/Native-Drag-Drop/assets/54309838/e497371c-f292-49fb-aa25-28329fe24692)
 
 In this mode, you can drag items onto a droppable area, which then maps the items accordingly. This is achieved by passing an identifier to the drop target, which then associates the dragged items with their new positions.
 
-### Any-Position Drag-and-Drop
+## Any-Position Drag-and-Drop
 ![Screenshot 2024-04-02 at 3 53 44 PM](https://github.com/WhosthatAoli/Native-Drag-Drop/assets/54309838/bb7ea30b-ceb5-4309-b83a-39ec1df55be6)
 
 Behind the Scenes:
@@ -24,7 +24,7 @@ To enable dropping items at any position, each item needs an absolute position w
 The final position of the item within the drop area is determined by subtracting the drag offset from the board offset, aligning the item based on the cursor's drop position.
 
 
-### Grid-Based Drag-and-Drop
+## Grid-Based Drag-and-Drop
 ![Screenshot 2024-04-02 at 4 01 36 PM](https://github.com/WhosthatAoli/Native-Drag-Drop/assets/54309838/98a6636e-45b6-4d42-aafc-ce6af1e9b218)
 
 Behind the Scenes:
