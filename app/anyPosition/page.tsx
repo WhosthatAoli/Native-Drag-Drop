@@ -30,7 +30,9 @@ export default function Home() {
         <div className="flex flex-col gap-2 ml-8">
           {PictureList.map((picture) => {
             //@ts-ignore
-            return <Picture url={picture.url.src} id={picture.id} />;
+            return (
+              <Picture url={picture.url.src} id={picture.id} key={picture.id} />
+            );
           })}
         </div>
         <AnyPositionBoard />

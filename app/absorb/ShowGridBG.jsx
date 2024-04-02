@@ -24,8 +24,8 @@ const ShowGridBG = () => {
       onMouseLeave={handleMouseLeave}
     >
       {/* Your grid cells */}
-      {gridsNumber.map((grid) => (
-        <div className={gridClass}></div>
+      {gridsNumber.map((grid, index) => (
+        <div key={index} className={gridClass}></div>
       ))}
     </div>
   );
